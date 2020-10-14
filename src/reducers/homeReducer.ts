@@ -1,17 +1,17 @@
 import produce from 'immer';
 
 const initialState = {
-    isLogIn: false,
+    isAuthenticated: false,
 }
 
 export const homeReducer = (state = initialState, action: any) =>
     produce(state, draft => {
         switch (action.type) {
             case 'LOGOUT':
-                draft.isLogIn = false
+                draft.isAuthenticated = false
                 break
             case 'LOGIN_SUCCEED':
-                draft.isLogIn = true
+                draft.isAuthenticated = true
                 break
             default:
                 return state

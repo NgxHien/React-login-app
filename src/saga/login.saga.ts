@@ -16,7 +16,7 @@ export function* loginSaga(action: any) {
             },
         })
         if (respond) {
-            yield put(fetchUserSuccess(respond.data));
+            yield put(fetchUserSuccess(respond.data.token));
         } else {
             alert('Wrong username or password');
         }

@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react';
+import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { logout } from '../../actions/home';
 import { useDispatch } from 'react-redux';
@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 const HomePage = () => {
     const dispatch = useDispatch();
 
-    const handleLogout = (event: FormEvent) => {
+    const handleLogout = () => {
         localStorage.removeItem('token');
         dispatch(logout());
     };

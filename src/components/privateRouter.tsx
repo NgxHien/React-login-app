@@ -5,7 +5,7 @@ import { Route, RouteProps, Redirect, RouteComponentProps } from 'react-router-d
 
 
 interface ReduxProps {
-    isLogIn: boolean
+    isAuthenticated: boolean
 }
 
 interface Props extends ReduxProps, RouteProps {
@@ -14,12 +14,12 @@ interface Props extends ReduxProps, RouteProps {
 
 export const PrivateRoute = (props: Props) => {
     const { location } = props;
-    const { isLogIn, component: Component, ...rest } = props
+    const { isAuthenticated, component: Component, ...rest } = props
     return (
         <Route
             {...rest}
             render={(props) => {
-                if (!isLogIn) {
+                if (!isAuthenticated) {
                     return (
                         <Redirect to={{ pathname: '/login', state: { from: location } }} />
                     );
@@ -30,7 +30,7 @@ export const PrivateRoute = (props: Props) => {
     )
 }
 const mapStateToProps = (state: any) => ({
-    isLogIn: state.homeReducer.isLogIn
+    isAuthenticated: state.homeReducer.isAuthenticated
 })
 
 export default connect(mapStateToProps)(PrivateRoute)

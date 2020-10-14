@@ -5,7 +5,7 @@ import login, { fetchUser } from "../../actions/login";
 import { useHistory } from "react-router-dom";
 
 interface Props {
-  isLogIn: boolean,
+  isAuthenticated: boolean,
   history: any,
   LoginPage: any
 }
@@ -13,7 +13,7 @@ interface Props {
 const LoginPage = (props: Props) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { isLogIn } = props;
+  const { isAuthenticated } = props;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -29,14 +29,18 @@ const LoginPage = (props: Props) => {
     event.preventDefault();
     // dispatch(login(username, password));  // thunk's code
     dispatch(fetchUser(username, password)); // saga'code
+    localStorage.setItem('token', props.LoginPage.token);
   };
+
+
   useEffect(() => {
-    if (isLogIn) {
+    const isAuth = localStorage.getItem('token');
+    if (isAuth && isAuthenticated) {
       history.push('/');
     } else {
       history.push('/login');
     }
-  }, [history, isLogIn]);
+  }, [isAuthenticated]);
 
   return (
     <div className="container">
@@ -66,7 +70,7 @@ const LoginPage = (props: Props) => {
 
 const mapState = (state: any) => ({
   LoginPage: state.loginReducer,
-  isLogIn: state.homeReducer.isLogIn
+  isAuthenticated: state.homeReducer.isAuthenticated
 })
 
 export default connect(mapState)(LoginPage);

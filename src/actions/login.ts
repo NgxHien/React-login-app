@@ -1,4 +1,5 @@
 import axios from "axios"
+
 export const fetchUser = (username: string, password: string) => {
     return {
         type: 'LOGIN_REQUEST',
