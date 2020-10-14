@@ -28,7 +28,7 @@ const LoginPage = (props: Props) => {
   const submit = (event: FormEvent) => {
     event.preventDefault();
     // dispatch(login(username, password));  // thunk's code
-    dispatch(fetchUser(username, password)); // sage'code
+    dispatch(fetchUser(username, password)); // saga'code
   };
   useEffect(() => {
     if (isLogIn) {
