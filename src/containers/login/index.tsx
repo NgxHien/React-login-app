@@ -1,7 +1,7 @@
 import React, { FormEvent, useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { connect, useDispatch } from "react-redux";
-import { fetchUser } from "../../actions/login";
+import login, { fetchUser } from "../../actions/login";
 import { useHistory } from "react-router-dom";
 
 interface Props {
@@ -28,7 +28,7 @@ const LoginPage = (props: Props) => {
   const submit = (event: FormEvent) => {
     event.preventDefault();
     // dispatch(login(username, password));  // thunk's code
-    dispatch(fetchUser(username, password)); // sage'code
+    dispatch(fetchUser(username, password)); // saga'code
   };
   useEffect(() => {
     if (isLogIn) {
