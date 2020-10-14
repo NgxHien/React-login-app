@@ -19,7 +19,7 @@ export const PrivateRoute = (props: Props) => {
         <Route
             {...rest}
             render={(props) => {
-                if (!isAuthenticated) {
+                if (!isAuthenticated && !localStorage.getItem('token')) {
                     return (
                         <Redirect to={{ pathname: '/login', state: { from: location } }} />
                     );

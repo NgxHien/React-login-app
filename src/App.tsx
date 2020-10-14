@@ -12,7 +12,7 @@ function App() {
         <React.Fragment>
           <Switch>
             <Route path="/login" exact component={LoginPage}></Route>
-            <PrivateRoute path="/" component={HomePage} />
+            <PrivateRoute path="/" exact component={HomePage} />
           </Switch>
         </React.Fragment>
       </BrowserRouter>

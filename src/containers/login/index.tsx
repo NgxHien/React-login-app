@@ -32,10 +32,8 @@ const LoginPage = (props: Props) => {
     localStorage.setItem('token', props.LoginPage.token);
   };
 
-
   useEffect(() => {
-    const isAuth = localStorage.getItem('token');
-    if (isAuth && isAuthenticated) {
+    if (isAuthenticated) {
       history.push('/');
     } else {
       history.push('/login');
